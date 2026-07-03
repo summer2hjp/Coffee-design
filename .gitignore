@@ -34,3 +34,6 @@ next-env.d.ts
 
 # firecrawl
 .firecrawl/
+
+# code intelligence
+.codegraph/

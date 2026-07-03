@@ -1,0 +1,34 @@
+# Cloudflare Pages Headers
+# Reference: https://developers.cloudflare.com/pages/platform/headers/
+
+# ──────────────────────────────────────────────
+# Security Headers — applied to all HTML pages
+# ──────────────────────────────────────────────
+/*.html
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# ──────────────────────────────────────────────
+# Caching — short TTL for HTML pages
+# ──────────────────────────────────────────────
+/*
+  Cache-Control: public, max-age=600, s-maxage=3600
+
+# ──────────────────────────────────────────────
+# Shopify CDN assets — long cache, allow CORS
+# ──────────────────────────────────────────────
+https://sofecoffee.com/cdn/shop/files/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# ──────────────────────────────────────────────
+# Static assets (fonts, favicon) — long cache
+# ──────────────────────────────────────────────
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
