@@ -10,7 +10,11 @@ npm run build        # Static export to `out/` directory (output: 'export')
 npm run start        # Production preview (requires build first)
 ```
 
-No test runner, linter, or formatter is currently configured.
+```bash
+npm test             # Run Jest tests (__tests__/)
+```
+
+No linter or formatter is currently configured.
 
 ## Architecture
 

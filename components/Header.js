@@ -66,7 +66,7 @@ export default function Header() {
         <div className="header-inner">
           <Link href="/" className="header-logo">
             <span>SOFE</span>
-            <span style={{ fontSize: "0.65rem", color: "#999", marginLeft: 4 }}>
+            <span style={{ fontSize: "0.8rem", color: "#999", marginLeft: 4 }}>
               COFFEE
             </span>
           </Link>
