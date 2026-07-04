@@ -132,7 +132,7 @@ function CreditSection() {
         <div className="credit-content">
           <h2>{t("credit.title")}</h2>
           <p>{t("credit.desc")}</p>
-          <Link href="https://sofecoffee.com/collections/sofe-credits" className="btn btn-primary">
+          <Link href="/sofe-credits" className="btn btn-primary">
             {t("credit.cta")}
           </Link>
         </div>
