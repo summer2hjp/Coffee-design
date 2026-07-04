@@ -6,7 +6,6 @@ import { useLanguage, useTranslation } from "../lib/i18n"
 import { products } from "../lib/products"
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
@@ -15,15 +14,6 @@ export default function Header() {
   const searchRef = useRef(null)
   const searchInputRef = useRef(null)
   const sidebarRef = useRef(null)
-
-  // Close menu on resize
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 1024) setMenuOpen(false)
-    }
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
 
   // Focus search input when modal opens
   useEffect(() => {
@@ -163,26 +153,14 @@ export default function Header() {
             </Link>
             <button
               className="hamburger"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open menu"
             >
               <span />
               <span />
               <span />
             </button>
           </div>
-        </div>
-
-        <div className={`mobile-nav ${menuOpen ? "open" : ""}`}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
         </div>
       </header>
 
@@ -201,6 +179,18 @@ export default function Header() {
             ✕
           </button>
         </div>
+        <nav className="sidebar-nav sidebar-nav-main">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setSidebarOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="sidebar-divider" />
         <nav className="sidebar-nav">
           {sidebarLinks.map((link) => (
             <Link

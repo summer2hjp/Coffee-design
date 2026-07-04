@@ -355,30 +355,15 @@ button {
   transition: all 0.3s;
 }
 
-.mobile-nav {
-  display: none;
-  position: fixed;
-  top: var(--header-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(13, 13, 13, 0.98);
-  padding: 40px 20px;
-  z-index: 999;
-  overflow-y: auto;
+.sidebar-nav-main a {
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
-.mobile-nav.open {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.mobile-nav a {
-  font-size: 1.1rem;
-  color: var(--color-text-secondary);
-  padding: 10px 0;
-  border-bottom: 1px solid var(--color-border);
+.sidebar-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 8px 16px;
 }
 
 /* ===== Hero Banner ===== */
@@ -1192,6 +1177,10 @@ button {
     padding: 0 12px;
   }
 
+  .sidebar-toggle {
+    display: none;
+  }
+
   .header-logo span {
     font-size: 1rem;
   }
@@ -1216,19 +1205,6 @@ button {
 
   .hamburger span {
     width: 20px;
-  }
-
-  .mobile-nav {
-    padding: 24px 16px;
-  }
-
-  .mobile-nav.open {
-    gap: 0;
-  }
-
-  .mobile-nav a {
-    font-size: 1rem;
-    padding: 14px 0;
   }
 
   .hero-content h1 {
