@@ -1185,11 +1185,50 @@ button {
 
 @media (max-width: 640px) {
   :root {
-    --header-height: 64px;
+    --header-height: 56px;
+  }
+
+  .header-inner {
+    padding: 0 12px;
   }
 
   .header-logo span {
-    font-size: 1.15rem;
+    font-size: 1rem;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .lang-switch {
+    gap: 2px;
+  }
+
+  .lang-switch a {
+    padding: 1px 4px;
+    font-size: 0.7rem;
+  }
+
+  .hamburger {
+    padding: 2px;
+    gap: 4px;
+  }
+
+  .hamburger span {
+    width: 20px;
+  }
+
+  .mobile-nav {
+    padding: 24px 16px;
+  }
+
+  .mobile-nav.open {
+    gap: 0;
+  }
+
+  .mobile-nav a {
+    font-size: 1rem;
+    padding: 14px 0;
   }
 
   .hero-content h1 {
