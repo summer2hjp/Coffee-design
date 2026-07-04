@@ -8,6 +8,7 @@ const CRAWL_PRODUCT_SLUGS = [
   "10dbbox", "deep-45", "cold-brew-bag", "cold-brew-bag-oatside", "cold-brew-cup",
   "3months_db_subscription", "6months_db_subscription", "12months_db_subscription",
   "3months-bean-subscription", "6months-bean-subscription", "12months-bean-subscription",
+  "cascara-tea",
 ]
 
 function findProductBySlug(slug) {
