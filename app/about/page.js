@@ -1,12 +1,16 @@
+"use client"
+
 import Link from "next/link"
+import { useTranslation } from "../../lib/i18n"
 
 export default function AboutPage() {
+  const { t } = useTranslation()
   return (
     <>
       <section className="page-banner">
         <div className="banner-placeholder" />
         <div className="page-banner-overlay" />
-        <h1>About SOFE COFFEE</h1>
+        <h1>{t("about.title")}</h1>
       </section>
 
       <div className="content-page">
@@ -38,7 +42,7 @@ export default function AboutPage() {
 
         <div style={{ textAlign: "center" }}>
           <Link href="/locations" className="btn btn-primary">
-            Visit Our Stores
+            {t("about.visitStores")}
           </Link>
         </div>
       </div>
