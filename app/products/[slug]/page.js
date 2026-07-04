@@ -145,7 +145,7 @@ export default function ProductPage({ params }) {
               </p>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <a
-                  href={`https://sofecoffee.com/products/${slug}`}
+                  href={`https://sofecoffee.com/products/${product.shopifySlug || slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary"
