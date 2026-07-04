@@ -8,11 +8,13 @@ import { products } from "../lib/products"
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const { lang, toggleLang } = useLanguage()
   const { t } = useTranslation()
   const searchRef = useRef(null)
   const searchInputRef = useRef(null)
+  const sidebarRef = useRef(null)
 
   // Close menu on resize
   useEffect(() => {
@@ -29,6 +31,17 @@ export default function Header() {
       searchInputRef.current.focus()
     }
   }, [searchOpen])
+
+  // Close sidebar on Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setSidebarOpen(false)
+    }
+    if (sidebarOpen) {
+      document.addEventListener("keydown", handleKeyDown)
+      return () => document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [sidebarOpen])
 
   // Close search on Escape
   useEffect(() => {
@@ -60,16 +73,49 @@ export default function Header() {
     { href: "/contact", label: t("nav.contact") },
   ]
 
+  const sidebarLinks = [
+    { href: "/", label: t("sidebar.home") },
+    { href: "/collections/new-arrival", label: t("sidebar.newArrival") },
+    { href: "/collections/selected-beans", label: t("sidebar.coffeeBeans") },
+    { href: "/collections/coffee-drip-bag", label: t("sidebar.dripBag") },
+    { href: "/collections/cold-brew-bag", label: t("sidebar.coldBrew") },
+    { href: "/collections/tools", label: t("sidebar.coffeeTools") },
+    { href: "/collections/huskee", label: t("sidebar.huskee") },
+    { href: "/collections/%E7%89%B9%E5%83%B9%E7%94%A2%E5%93%81", label: t("sidebar.specialOffer") },
+    { href: "/collections/monthly-subscription", label: t("sidebar.monthlySub") },
+    { href: "/sofe-credits", label: t("sidebar.sofeCredits") },
+  ]
+
+  // Lock body scroll when sidebar is open
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => { document.body.style.overflow = "" }
+  }, [sidebarOpen])
+
   return (
     <>
       <header className="header">
         <div className="header-inner">
-          <Link href="/" className="header-logo">
-            <span>SOFE</span>
-            <span style={{ fontSize: "0.8rem", color: "#999", marginLeft: 4 }}>
-              COFFEE
-            </span>
-          </Link>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <button
+              className="sidebar-toggle"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open categories"
+              title={t("sidebar.title")}
+            >
+              ☰
+            </button>
+            <Link href="/" className="header-logo">
+              <span>SOFE</span>
+              <span style={{ fontSize: "0.8rem", color: "#999", marginLeft: 4 }}>
+                COFFEE
+              </span>
+            </Link>
+          </div>
 
           <nav className="header-nav">
             {navLinks.map((link) => (
@@ -139,6 +185,34 @@ export default function Header() {
           ))}
         </div>
       </header>
+
+      {/* Sidebar Drawer */}
+      <div
+        className={`sidebar-overlay ${sidebarOpen ? "open" : ""}`}
+        onClick={() => setSidebarOpen(false)}
+      />
+      <div className={`sidebar-drawer ${sidebarOpen ? "open" : ""}`} ref={sidebarRef}>
+        <div className="sidebar-header">
+          <button
+            className="sidebar-close"
+            onClick={() => setSidebarOpen(false)}
+            aria-label="Close categories"
+          >
+            ✕
+          </button>
+        </div>
+        <nav className="sidebar-nav">
+          {sidebarLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setSidebarOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
 
       {/* Search Overlay */}
       {searchOpen && (
