@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { products } from "../../../lib/products"
+import { products, subscriptions } from "../../../lib/products"
 
 // Product slugs referenced in the crawl data that may not match product hrefs
 const CRAWL_PRODUCT_SLUGS = [
@@ -17,10 +17,25 @@ function findProductBySlug(slug) {
   while (targetSlug !== decodeURIComponent(targetSlug)) {
     targetSlug = decodeURIComponent(targetSlug)
   }
-  return products.find((p) => {
+
+  // Search in the main products array
+  const fromProducts = products.find((p) => {
     if (!p.href || p.href === "#") return false
     try {
       const url = new URL(p.href, "http://localhost")
+      const parts = decodeURIComponent(url.pathname).split("/").filter(Boolean)
+      return parts[parts.length - 1] === targetSlug
+    } catch {
+      return false
+    }
+  })
+  if (fromProducts) return fromProducts
+
+  // Search in subscriptions array (subscription product detail pages)
+  return subscriptions.find((s) => {
+    if (!s.href || s.href === "#") return false
+    try {
+      const url = new URL(s.href, "http://localhost")
       const parts = decodeURIComponent(url.pathname).split("/").filter(Boolean)
       return parts[parts.length - 1] === targetSlug
     } catch {
