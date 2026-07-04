@@ -6,6 +6,8 @@ const CRAWL_PRODUCT_SLUGS = [
   "drip-bag-coffee-ethiopia", "drip-bag-coffee-kenya", "drip-bag-coffee-colombia",
   "drip-bag-coffee-brazil", "drip-bag-coffee-mexico", "drip-bag-coffee-png",
   "10dbbox", "deep-45", "cold-brew-bag", "cold-brew-bag-oatside", "cold-brew-cup",
+  "3months_db_subscription", "6months_db_subscription", "12months_db_subscription",
+  "3months-bean-subscription", "6months-bean-subscription", "12months-bean-subscription",
 ]
 
 function findProductBySlug(slug) {
