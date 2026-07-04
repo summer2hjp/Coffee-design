@@ -1,7 +1,11 @@
+"use client"
+
 import Link from "next/link"
 import { subscriptions } from "../../lib/products"
+import { useTranslation } from "../../lib/i18n"
 
 function SubscriptionCard({ sub }) {
+  const { t } = useTranslation()
   return (
     <div className="sub-card">
       <div className="sub-icon">☕</div>
@@ -12,17 +16,16 @@ function SubscriptionCard({ sub }) {
         {sub.price}
       </div>
       {sub.save && <div className="sub-save">{sub.save}</div>}
-      <p className="sub-desc">
-        Enjoy fresh coffee delivered regularly. Cancel anytime.
-      </p>
+      <p className="sub-desc">{t("subscription.perks")}</p>
       <Link href={sub.href} className="btn" style={{ marginTop: "auto" }}>
-        Choose Options
+        {t("subscription.choose")}
       </Link>
     </div>
   )
 }
 
 export default function SubscriptionPage() {
+  const { t } = useTranslation()
   const dripBagSubs = subscriptions.filter((s) => s.type === "Coffee Drip Bag")
   const beanSubs = subscriptions.filter((s) => s.type === "Pour Over Coffee Beans")
 
@@ -31,18 +34,18 @@ export default function SubscriptionPage() {
       <section className="page-banner">
         <div className="banner-placeholder" />
         <div className="page-banner-overlay" />
-        <h1>Monthly Subscription</h1>
+        <h1>{t("subscription.title")}</h1>
       </section>
 
       <section className="section">
         <div className="container">
           <div className="section-title">
-            <h2>Coffee Beans &amp; Drip Bags</h2>
-            <p>Subscribe and save on your favorite coffee</p>
+            <h2>{t("subscription.subtitle")}</h2>
+            <p>{t("subscription.desc")}</p>
           </div>
 
           <div className="product-grid-header">
-            <h2>Coffee Drip Bag</h2>
+            <h2>{t("subscription.dripBag")}</h2>
           </div>
           <div className="sub-grid" style={{ marginBottom: 60 }}>
             {dripBagSubs.map((sub) => (
@@ -51,7 +54,7 @@ export default function SubscriptionPage() {
           </div>
 
           <div className="product-grid-header">
-            <h2>Pour Over Coffee Beans</h2>
+            <h2>{t("subscription.beans")}</h2>
           </div>
           <div className="sub-grid">
             {beanSubs.map((sub) => (

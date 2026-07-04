@@ -1,6 +1,10 @@
+"use client"
+
+import { useTranslation } from "../../lib/i18n"
 import { locations } from "../../lib/locations"
 
 export default function LocationsPage() {
+  const { t } = useTranslation()
   // Group locations by area
   const grouped = locations.reduce((acc, loc) => {
     if (!acc[loc.area]) acc[loc.area] = []
@@ -13,7 +17,7 @@ export default function LocationsPage() {
       <section className="page-banner">
         <div className="banner-placeholder" />
         <div className="page-banner-overlay" />
-        <h1>Locations</h1>
+        <h1>{t("locations.title")}</h1>
       </section>
 
       <section className="section">

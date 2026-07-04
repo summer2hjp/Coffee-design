@@ -1071,8 +1071,8 @@ export default function InteractPage() {
           Firecrawl
         </a>{" "}
         v4.29.1 · Next.js 15 ·{" "}
-        <a href="/api-docs" style={{ color: "#6366f1" }}>
-          API Docs
+        <a href="https://docs.firecrawl.dev/" target="_blank" rel="noopener" style={{ color: "#6366f1" }}>
+          Firecrawl Docs
         </a>{" "}
         · Crawl data:{" "}
         <code style={{ background: "#f0f0f0", padding: "0.15rem 0.35rem", borderRadius: 3 }}>

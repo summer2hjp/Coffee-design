@@ -505,6 +505,7 @@ button {
   font-weight: 700;
   margin-bottom: 16px;
   line-height: 1.2;
+  white-space: pre-line;
 }
 
 .credit-content p {

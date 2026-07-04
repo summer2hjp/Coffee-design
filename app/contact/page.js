@@ -1,12 +1,16 @@
+"use client"
+
 import Link from "next/link"
+import { useTranslation } from "../../lib/i18n"
 
 export default function ContactPage() {
+  const { t } = useTranslation()
   return (
     <>
       <section className="page-banner">
         <div className="banner-placeholder" />
         <div className="page-banner-overlay" />
-        <h1>Contact Us</h1>
+        <h1>{t("contact.title")}</h1>
       </section>
 
       <section className="section">
