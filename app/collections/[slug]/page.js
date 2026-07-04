@@ -103,11 +103,10 @@ function CollectionBanner({ name }) {
 }
 
 function CollectionProductCard({ product }) {
-  const isExternal =
-    product.href && product.href.startsWith("http")
+  const linkHref = product.href && product.href !== "#" ? product.href : "/"
 
-  const cardContent = (
-    <>
+  return (
+    <Link href={linkHref} className="product-card">
       <div className="product-card-image">
         <img src={product.image || "/placeholder.svg"} alt={product.name} />
         {product.badge && (
@@ -125,25 +124,6 @@ function CollectionProductCard({ product }) {
           {product.price}
         </div>
       </div>
-    </>
-  )
-
-  if (isExternal) {
-    return (
-      <a
-        href={product.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="product-card"
-      >
-        {cardContent}
-      </a>
-    )
-  }
-
-  return (
-    <Link href={product.href} className="product-card">
-      {cardContent}
     </Link>
   )
 }

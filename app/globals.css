@@ -145,9 +145,22 @@ button {
   padding: 0 20px;
 }
 
+/* ===== Wide / Fullscreen Adaptation ===== */
+@media (min-width: 1400px) {
+  :root {
+    --max-width: 1400px;
+  }
+}
+
+@media (min-width: 1800px) {
+  :root {
+    --max-width: 1600px;
+  }
+}
+
 .header-logo {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   flex-shrink: 0;
 }
 
@@ -170,9 +183,9 @@ button {
 }
 
 .header-nav a {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: var(--color-text-secondary);
+  color: var(--color-accent);
   letter-spacing: 0.05em;
   transition: color 0.2s ease;
   white-space: nowrap;
@@ -809,6 +822,18 @@ button {
   padding: 0 20px;
 }
 
+.footer-bottom {
+  max-width: var(--max-width);
+  margin: 40px auto 0;
+  padding: 20px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .footer-col h4 {
   font-size: 0.8rem;
   font-weight: 700;
@@ -828,18 +853,6 @@ button {
 
 .footer-col a:hover {
   color: var(--color-accent);
-}
-
-.footer-bottom {
-  max-width: var(--max-width);
-  margin: 40px auto 0;
-  padding: 20px;
-  border-top: 1px solid var(--color-border);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
 }
 
 .footer-bottom p {

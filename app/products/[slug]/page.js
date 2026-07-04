@@ -9,12 +9,18 @@ const CRAWL_PRODUCT_SLUGS = [
 ]
 
 function findProductBySlug(slug) {
+  // slug from Next.js params may be URL-encoded in RSC serialization,
+  // and for Chinese characters it can be double-encoded (e.g. %25E5...)
+  let targetSlug = slug
+  while (targetSlug !== decodeURIComponent(targetSlug)) {
+    targetSlug = decodeURIComponent(targetSlug)
+  }
   return products.find((p) => {
     if (!p.href || p.href === "#") return false
     try {
       const url = new URL(p.href, "http://localhost")
-      const parts = url.pathname.split("/").filter(Boolean)
-      return parts[parts.length - 1] === slug
+      const parts = decodeURIComponent(url.pathname).split("/").filter(Boolean)
+      return parts[parts.length - 1] === targetSlug
     } catch {
       return false
     }
@@ -22,12 +28,13 @@ function findProductBySlug(slug) {
 }
 
 export function generateStaticParams() {
-  // Extract slug from the last segment of each product's href,
-  // whether it's a local path or an external URL
+  // Extract slug from the last segment of each product's href
   const slugsFromProducts = products
     .filter((p) => p.href && p.href !== "#")
     .map((p) => {
       const url = new URL(p.href, "http://localhost")
+      // new URL() URL-encodes non-ASCII chars; keep encoded form so
+      // static params match the URL-encoded slug that browsers send
       const parts = url.pathname.split("/").filter(Boolean)
       return parts[parts.length - 1]
     })
@@ -136,12 +143,17 @@ export default function ProductPage({ params }) {
                 Premium quality coffee product from SOFE COFFEE. Visit our store or check the
                 subscription page for more options.
               </p>
-              <div style={{ display: "flex", gap: 12 }}>
-                <Link href="/subscription" className="btn btn-primary">
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                <a
+                  href={`https://sofecoffee.com/products/${slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
+                  Buy on Shopify ↗
+                </a>
+                <Link href="/subscription" className="btn">
                   Subscribe & Save
-                </Link>
-                <Link href="/cart" className="btn">
-                  View Cart
                 </Link>
               </div>
             </div>
