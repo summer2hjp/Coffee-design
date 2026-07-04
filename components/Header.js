@@ -8,12 +8,35 @@ import { products } from "../lib/products"
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const { lang, toggleLang } = useLanguage()
   const { t } = useTranslation()
   const searchRef = useRef(null)
   const searchInputRef = useRef(null)
   const sidebarRef = useRef(null)
+  const menuRef = useRef(null)
+
+  // Close right drawer on Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setMenuOpen(false)
+    }
+    if (menuOpen) {
+      document.addEventListener("keydown", handleKeyDown)
+      return () => document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [menuOpen])
+
+  // Lock body scroll when right drawer is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => { document.body.style.overflow = "" }
+  }, [menuOpen])
 
   // Focus search input when modal opens
   useEffect(() => {
@@ -153,7 +176,7 @@ export default function Header() {
             </Link>
             <button
               className="hamburger"
-              onClick={() => setSidebarOpen(true)}
+              onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
             >
               <span />
@@ -164,7 +187,35 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Sidebar Drawer */}
+      {/* Right Drawer (mobile nav) — slides from right */}
+      <div
+        className={`right-overlay ${menuOpen ? "open" : ""}`}
+        onClick={() => setMenuOpen(false)}
+      />
+      <div className={`right-drawer ${menuOpen ? "open" : ""}`} ref={menuRef}>
+        <div className="right-drawer-header">
+          <button
+            className="right-drawer-close"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
+        </div>
+        <nav className="right-drawer-nav">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
+      {/* Sidebar Drawer (left) */}
       <div
         className={`sidebar-overlay ${sidebarOpen ? "open" : ""}`}
         onClick={() => setSidebarOpen(false)}
@@ -179,18 +230,6 @@ export default function Header() {
             ✕
           </button>
         </div>
-        <nav className="sidebar-nav sidebar-nav-main">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setSidebarOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="sidebar-divider" />
         <nav className="sidebar-nav">
           {sidebarLinks.map((link) => (
             <Link
