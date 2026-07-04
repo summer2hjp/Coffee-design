@@ -240,7 +240,7 @@ button {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 280px;
+  width: 260px;
   max-width: 85vw;
   background: var(--color-bg-light);
   z-index: 2001;
@@ -376,7 +376,7 @@ button {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 280px;
+  width: 260px;
   max-width: 85vw;
   background: var(--color-bg-light);
   z-index: 2001;
