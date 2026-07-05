@@ -5,8 +5,8 @@ export function generateStaticParams() {
   return policies.map((p) => ({ slug: p.slug }))
 }
 
-export function generateMetadata({ params }) {
-  const { slug } = params
+export async function generateMetadata({ params }) {
+  const { slug } = await params
   const policy = policies.find((p) => p.slug === slug)
 
   if (!policy) {
@@ -19,8 +19,8 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function PolicyPage({ params }) {
-  const { slug } = params
+export default async function PolicyPage({ params }) {
+  const { slug } = await params
   const policy = policies.find((p) => p.slug === slug)
 
   if (!policy) {

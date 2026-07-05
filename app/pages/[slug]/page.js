@@ -87,8 +87,8 @@ export function generateStaticParams() {
   return pageData.map((p) => ({ slug: p.slug }))
 }
 
-export function generateMetadata({ params }) {
-  const { slug } = params
+export async function generateMetadata({ params }) {
+  const { slug } = await params
   const page = getPageBySlug(slug)
 
   if (!page) {
@@ -101,8 +101,8 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function PageRouter({ params }) {
-  const { slug } = params
+export default async function PageRouter({ params }) {
+  const { slug } = await params
   const page = getPageBySlug(slug)
 
   if (!page) {

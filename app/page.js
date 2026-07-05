@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { products, getProductsByCategory } from "../lib/products"
+import { products, getProductsByCategory, COLLECTION_BANNERS } from "../lib/products"
 import { useTranslation } from "../lib/i18n"
 
 function HeroBanner() {
@@ -11,32 +11,60 @@ function HeroBanner() {
 
   const slides = [
     {
-      bg: "https://sofecoffee.com/cdn/shop/files/1778783394888-019e27c0-0d39-7e51-ad68-1c87d72cb6f9.png",
-      title: "Brewed Without Bounds",
+      bg: COLLECTION_BANNERS["new-arrival"],
+      title: "New Arrival",
       subtitle: "Anytime, Anywhere with SOFE COFFEE",
       cta: t("hero.shopNow"),
-      href: "/#products",
+      href: "/collections/new-arrival",
     },
     {
-      bg: "https://sofecoffee.com/cdn/shop/files/bd392da6c9dc39fc2f1d08eda17dd16c.jpg",
-      title: "Ⓟ 𝐏𝐫𝐞𝐦𝐢𝐮𝐦 Collection",
+      bg: COLLECTION_BANNERS["selected-beans"],
+      title: "Selected Coffee Beans",
       subtitle: "Anytime, Anywhere with SOFE COFFEE",
       cta: t("hero.shopNow"),
-      href: "/#products",
+      href: "/collections/selected-beans",
     },
     {
-      bg: "https://sofecoffee.com/cdn/shop/files/7b2d5f16299286dd335b68c0a2df14c6_copy.jpg",
-      title: "New Espresso Beans",
+      bg: COLLECTION_BANNERS["coffee-drip-bag"],
+      title: "Coffee Drip Bag",
       subtitle: "Anytime, Anywhere with SOFE COFFEE",
       cta: t("hero.shopNow"),
-      href: "/#products",
+      href: "/collections/coffee-drip-bag",
     },
     {
-      bg: "https://sofecoffee.com/cdn/shop/files/sofe_airside_4_drink_image.jpg",
-      title: "Premium Winey Blend",
+      bg: COLLECTION_BANNERS["cold-brew-bag"],
+      title: "Cold Brew Bag",
       subtitle: "Anytime, Anywhere with SOFE COFFEE",
       cta: t("hero.shopNow"),
-      href: "/#products",
+      href: "/collections/cold-brew-bag",
+    },
+    {
+      bg: COLLECTION_BANNERS["tools"],
+      title: "Coffee Tools",
+      subtitle: "Anytime, Anywhere with SOFE COFFEE",
+      cta: t("hero.shopNow"),
+      href: "/collections/tools",
+    },
+    {
+      bg: COLLECTION_BANNERS["huskee"],
+      title: "Huskee",
+      subtitle: "Anytime, Anywhere with SOFE COFFEE",
+      cta: t("hero.shopNow"),
+      href: "/collections/huskee",
+    },
+    {
+      bg: COLLECTION_BANNERS["monthly-subscription"],
+      title: "Monthly Subscription",
+      subtitle: "Anytime, Anywhere with SOFE COFFEE",
+      cta: t("hero.shopNow"),
+      href: "/collections/monthly-subscription",
+    },
+    {
+      bg: COLLECTION_BANNERS["sofe-credits"],
+      title: "Sofe Credits",
+      subtitle: "Anytime, Anywhere with SOFE COFFEE",
+      cta: t("hero.shopNow"),
+      href: "/collections/sofe-credits",
     },
   ]
 

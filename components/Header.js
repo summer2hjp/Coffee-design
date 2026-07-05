@@ -94,9 +94,9 @@ export default function Header() {
     { href: "/collections/cold-brew-bag", label: t("sidebar.coldBrew") },
     { href: "/collections/tools", label: t("sidebar.coffeeTools") },
     { href: "/collections/huskee", label: t("sidebar.huskee") },
-    { href: "/collections/%E7%89%B9%E5%83%B9%E7%94%A2%E5%93%81", label: t("sidebar.specialOffer") },
+    { href: "/collections/special-offer", label: t("sidebar.specialOffer") },
     { href: "/collections/monthly-subscription", label: t("sidebar.monthlySub") },
-    { href: "/sofe-credits", label: t("sidebar.sofeCredits") },
+    { href: "/collections/sofe-credits", label: t("sidebar.sofeCredits") },
   ]
 
   // Lock body scroll when sidebar is open

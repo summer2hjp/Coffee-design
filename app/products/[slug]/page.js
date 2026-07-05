@@ -62,8 +62,8 @@ export function generateStaticParams() {
   return allSlugs.map((slug) => ({ slug }))
 }
 
-export function generateMetadata({ params }) {
-  const { slug } = params
+export async function generateMetadata({ params }) {
+  const { slug } = await params
   const product = findProductBySlug(slug)
 
   if (!product) {
@@ -76,8 +76,8 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function ProductPage({ params }) {
-  const { slug } = params
+export default async function ProductPage({ params }) {
+  const { slug } = await params
   const product = findProductBySlug(slug)
 
   if (!product) {
